@@ -1,14 +1,12 @@
+import java.util.*;
 
 public class HelloWorld {
 
 	public static void main(String[] args) {
-		int a =1;
-		int b = 2;
-		
-		System.out.println((double)a/b);
-		
-		if(a == b) System.out.println(1);
-		
+		List <Integer> [] arr = new ArrayList [11];
+		arr[0] = new ArrayList();
+		arr[0].add(1);
+		System.out.println(arr[0].get(0));
 		
 	}
 
