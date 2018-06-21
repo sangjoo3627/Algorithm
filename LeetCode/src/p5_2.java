@@ -31,30 +31,33 @@ public class p5_2 {
 		
 		boolean [][] dp = new boolean [len][len];
 		for(int i=0; i<len; i++) dp[i][i] = true;
-        
+		
 		for(int i=2; i<=len; i++){
 			for(int j=0; j<=len-i; j++){
-				String temp = s.substring(j, j+i);
 				if(i==2 && s.charAt(j) == s.charAt(j+1)) {
 					dp[j][j+1] = true;
-					longest = temp;
 					continue;
 				}
 				if(dp[j+1][j+i-2] && s.charAt(j) == s.charAt(j+i-1)) {
 					dp[j][j+i-1] = true;
-					if(max < i) {
-						max = i;
-						longest = temp;
-					}
 				}
 			}
 		}
-        
+		
+		for(int i=0; i<len; i++){
+			for(int j=i; j<len; j++){
+				if(dp[i][j] && j-i+1 > max){
+					max = j-i+1;
+					longest = s.substring(i, j+1);
+				}
+			}
+		}
+		
         return longest;
     }
 
 	public static void main(String[] args) {
-		System.out.println(longestPalindrome("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"));
+		System.out.println(longestPalindrome("babab"));
 	}
 
 }
