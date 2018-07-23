@@ -25,8 +25,8 @@ public class p684 {
 	/*
 	 * 접근방법
 	 * undirected graph의 cycle을 판단하는 문제를 변형한 것
-	 * union-find 자료구조를 쓰면 해당 두 노드가 같은 component에 있는 건지 판단할 수 있고
-	 * 같은 component에 있다면 cycle이라고 판단할수 있다.
+	 * union-find 자료구조를 쓰면 해당 두 노드가 같은 component에 있는 건지 판단할 수 있다
+	 * 두 노드가 이미 같은 component에 있는데 두 노드를 잇는 edge가 있다면 cycle이라고 판단할수 있다.
 	 * 즉 주어진 input인 모든 edge들을 DSU(Disjoint Set Union)에 union 함수로 넣으면서
 	 * 동시에 cycle을 판단하면 바로 그 edge를 리턴한다
 	 * 
@@ -54,6 +54,7 @@ public class p684 {
 		// merge two node depends on their ranks
 		public boolean union (int x, int y){
 			int xr = find(x), yr = find(y);
+			// 두 노드의 root가 같다면, 즉 같은 component이면 이 edge는 cycle을 만든다는 것을 의미하므로 false 리턴
 			if(xr == yr)
 				return false;
 			// rank가 더 높은 곳으로 연결해줘야 효율적
