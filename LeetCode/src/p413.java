@@ -30,9 +30,11 @@ import java.util.*;
 
 public class p413 {
 	/*
-	 * 접근방법1
-	 * 가장 긴 arithmetic slices을 최대한 많이 찾는다
-	 * 찾은 각 slice들에서 만들 수 있는 3개 이상의 slices를 수학적으로 구한다
+	 * 접근방법 : dp
+	 * dp[i]는 A[i]를 끝으로 하는 모든 arithmetic slices들의 갯수
+	 * 즉 A[i]-A[i-1] 과 A[i-1]-A[i-2]의 값이 같다면 dp[i]는 dp[i-1]을 포함하고 A[i]가 추가된 slices도 arithmetic slice라는 의미이므로
+	 * dp[i] = dp[i-1] + 1
+	 * 
 	 */
 
 	public static void main(String[] args) {
