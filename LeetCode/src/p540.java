@@ -37,9 +37,11 @@ public class p540 {
 		int mid = (start+end) / 2;
 		int result=nums[start];
 		
+		// mid 값이 홀수인지, 짝수인지
 		boolean even;
 		
 		while(start <= end){
+			// 종료조건
 			if(start == end) {
 				result = nums[start];
 				break;
@@ -49,14 +51,17 @@ public class p540 {
 			if(mid%2 == 0) even = true;
 			else even = false;
 			
+			// 양옆의 데이터와 모두 값이 다르다면 그 값이 정답
 			if(nums[mid] != nums[mid-1] && nums[mid] != nums[mid+1]){
 				result = nums[mid];
 				break;
 			}
+			// 오른쪽 데이터와 같을때
 			else if(nums[mid] != nums[mid-1]){
 				if(even) start=mid+1;
 				else end=mid-1;
 			}
+			// 왼쪽 데이터와 같을때
 			else{
 				if(even) end=mid-1;
 				else start=mid+1;
